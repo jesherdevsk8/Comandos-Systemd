@@ -99,5 +99,5 @@ cat -n /etc/init.d/bluetooth | less
 systemctl cat bluetooth.service
 systemctl cat bluetooth.service | wc -l
 # ---- são apenas 21 linhas
-# Sendo assim, fez com que as empresas adotassem o systemd e começassem a dar suporte. Elas não precisariam ter
-# um desenvolvedor só para fazer varias linhas de scripts, por exemplo para fazer o bluetooth funcionar
+Sendo assim, fez com que as empresas adotassem o systemd e começassem a dar suporte. Elas não precisariam ter
+um desenvolvedor só para fazer varias linhas de scripts, por exemplo para fazer o bluetooth funcionar
