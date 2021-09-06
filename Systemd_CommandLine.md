@@ -1,5 +1,5 @@
 
-## --- Lista de comandos úteis do Systemd no dia a dia do administrador de sistemas Linux:
+## Lista de comandos úteis do Systemd no dia a dia do administrador de sistemas Linux:
 
 ## ---------------Principais Comandos ---------------
 
