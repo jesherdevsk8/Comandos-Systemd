@@ -38,75 +38,95 @@ systemctl stop ssh
 
 systemctl restart ssh
 
-## ----------- Habilitando e desabilitando serviços --------------
+# Comando para desabilitar um serviço. obs: Executa-lo como root
 
-## systemctl disable nome.servico. Para desabilitar o serviço. obs: Executa-lo como root
 systemctl disable avahi-daemon.service avahi-daemon.socket
-## Isso só ocorrerá no proximo boot, então é recomendado para-lo primeiro com o comando systemctl stop nome
 
-## systemctl enable nome.servico. Para habilitar
+Isso só ocorrerá no proximo boot,
+então é recomendado para-lo primeiro com o comando systemctl stop nome
+
+# Comando para habilitar um serviço.
+
 systemctl enable avahi-daemon.service avahi-daemon.socket
 
-## systemctl is-enabled nome.servico. Para ver se estará desabilitado
+# Comando para ver se o serviço está habilitado.
+
 systemctl is-enabled avahi-daemon.service
 
-## Caso queira ver o arquivo, a fins de saber sobre a diferença de service e socket
-systemctl cat avahi-daemon.service
-## ---- Local
-# /lib/systemd/system/avahi-daemon.service
-# This file is part of avahi.
-## ----- Notamos que na linha 
-# [Unit]
-# Description=Avahi mDNS/DNS-SD Stack
-# Requires=avahi-daemon.socket
-## ----- Vemos que o avahi-daemon.service depede do socket para rodar
-## ----- Porém executamos o mesmo comando systemctl cat avahi-daemon.socket e sabemos que mesmo para
-## ----- o socket funcionar, ele precisa do service estar rodando....
+Caso queira ver o arquivo, a fins de saber sobre a diferença de service e socket
 
-## systemctl -t service. Verifica todos os serviços em execução:
+systemctl cat avahi-daemon.service
+
+/lib/systemd/system/avahi-daemon.service
+This file is part of avahi.
+Notamos que na linha
+ [Unit]
+ Description=Avahi mDNS/DNS-SD Stack
+ Requires=avahi-daemon.socket
+----- Vemos que o avahi-daemon.service depede do socket para rodar
+----- Porém executamos o mesmo comando systemctl cat avahi-daemon.socket e sabemos que mesmo para
+----- o socket funcionar, ele precisa do service estar rodando....
+
+# Comando para verificar todos os serviços em execução:
+
 systemctl -t service
 
-## systemctl halt. Desliga a máquina
+# Desligar a máquina.
+
 systemctl halt
 
-## systemctl reboot. Reinicializa a máquina
+# Reinicializar a máquina.
+
 systemctl reboot
 
-## journalctl -f. Verifica os logs
+# Verificar logs.
+
 journalctl -f
 
-## journalctl --since=today. Para ver logs do dia
+# Comando para ver logs do dia.
+
 journalctl --since=today
 
-## systemctl kill servico. Para matar um serviço.
-# Executamdp systemctl poderá ver o PID dos processos
+comando para matar um serviço.
+Executando systemctl poderá ver o PID dos processos
+
 systemctl kill numero_PID 
 
-## hostnamectl. Mostra informações da máquina.
+# Mostrar informações da máquina.
+
 hostnamectl
 
-## timedatectl. Mostra data, hora e Timezone.
+# Mostrar data, hora e Timezone.
+
 timedatectl
 
-## ---------------------------
 
 # O sistemd ainda tem uma camada de compatibilidade com system-V, Encontramos ele em /etc/init.d
+
 ls /etc/init.d
 
-## ls /etc/systemd/system/ - onde localiza o systemd
-ls /etc/systemd/
-# Vemos que mostra arquivos e diretórios
-## O principal em que vamos falar agora é diretorio "system"
-ls -l /etc/systemd/system
-# E vemos que contém alguns links simbólicos para /lib/systemd/system/
+ls /etc/systemd/system/ <- onde localiza o systemd
 
-## Comparando os arquivos de cada init system, vemos que é um shell scripting
+# mostrar arquivos e diretórios.
+
+ls /etc/systemd/
+
+# Vamos para o diretório "system"
+
+ls -l /etc/systemd/system
+
+Vemos que contém alguns links simbólicos para /lib/systemd/system/
+
+Comparando os arquivos de cada init system, vemos que é um shell scripting
+
 cat -n /etc/init.d/bluetooth | less
-# ---- são 134 linhas
-# Mas a grande sacada do systemd é que ele usa uma quantidade bem menor de scripts do que system-V
-# Podemos ver isso com os comandos
+---- são 134 linhas
+Mas a grande sacada do systemd é que ele usa uma quantidade bem menor de scripts do que system-V
+Podemos ver isso com os comandos
+
 systemctl cat bluetooth.service
 systemctl cat bluetooth.service | wc -l
-# ---- são apenas 21 linhas
+---- são apenas 21 linhas
+
 Sendo assim, fez com que as empresas adotassem o systemd e começassem a dar suporte. Elas não precisariam ter
 um desenvolvedor só para fazer varias linhas de scripts, por exemplo para fazer o bluetooth funcionar
