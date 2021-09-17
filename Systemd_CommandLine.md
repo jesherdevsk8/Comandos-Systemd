@@ -1,32 +1,41 @@
 
-## Lista de comandos úteis do Systemd no dia a dia do administrador de sistemas Linux:
+# Lista de comandos úteis do Systemd no dia a dia do administrador de sistemas Linux:
 
-## ---------------Principais Comandos ---------------
 
-## ------ Veja o manual, caso queira saber algo a mais-----
+# Veja o manual, caso queira saber algo a mais
+
 man systemd
 
-## systemd-analyze. Mostra todo o tempo de  processo de inicialização do boot, que o cuida o kernel.
+# Mostra todo o tempo de  processo de inicialização do boot, que o cuida o kernel.
+
 systemd-analyze
 
-## systemd-analyze blame. Mostra mais detalhes da inicialização.
+# Mostra mais detalhes da inicialização.
+
 systemd-analyze blame
 
-## systemd-cgtop. É como se fosse o comando top do systemd
-systemd-cgtop
-systemd-cgtop --help
-# caso queira saber algum comando a mais.
+# Comando semelhante ao, comando top.
 
-## systemctl status nome.servico. Para ver o status de um serviço, a fins de gerencia-lo.
+systemd-cgtop
+
+# para saber algum comando a mais.
+
+systemd-cgtop --help
+
+# Comando para ver o status de um serviço, a fins de gerencia-lo.
+
 systemctl status ssh
 
-## systemctl start nome.servico. Para inicializar um serviço.
+# Comando para inicializar um serviço.
+
 systemctl start ssh
 
-## systemctl stop nome.servico. Para parar o serviço.
+# Comando para parar um serviço.
+
 systemctl stop ssh
 
-## systemctl restart nome.servico. Para Reiniciar um serviço.
+# Comando para reinicializar um serviço.
+
 systemctl restart ssh
 
 ## ----------- Habilitando e desabilitando serviços --------------
